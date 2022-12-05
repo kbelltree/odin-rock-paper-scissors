@@ -5,77 +5,62 @@ function getComputerChoice() {
     switch (result) {
         // Include console.log to check if the desired result is returned. 
         case 0:   
-            console.log('rock');
+            console.log("Computer: rock");
             return "rock";
             break;
         case 1: 
-            console.log('paper');
+            console.log("Computer: paper");
             return "paper";
             break;
         case 2: 
-            console.log('scissors');
+            console.log("Computer: scissors");
             return "scissors";
             break;     
     }
 } 
 
 // Create a function named playRound for single round play that takes two parameters: playerSelection and computerSelection. 
-function playRound (playerSelection, computerSelection){
-    // Change playerSelection argument to all lower case to accommodate all string case types. 
-    // let playerSelectionLowerCased = playerSelection.toLowerCase(); 
-    // (1 round game) IF playerSelection and computerSelection are the same, return "It's a tie!"
-    // (5 round game)IF it's a tie, alert and return 0; 
-    if (playerSelection === computerSelection){
-        console.log(`It's a Tie! Both chose ${playerSelection}.`);
+function playRound(playerSelection, computerSelection){
+    // IF playerSelection and computerSelection are the same, return "It's a tie!"
+    switch (true) {
+      case (playerSelection === computerSelection):
+        console.log("It's a tie!");
         return 0; 
-    } 
-    // Create conditionals that declare a Winner of the round with a string for each playerSelection.   
-    if (playerSelection === "rock"){
-        // (1 round game)If playerSelection is Rock and computerSelection is Scissors, return "You win! Rock beats Scissors."
-        // (5 round game)IF player wins, alert and return 1
-        if (computerSelection === "scissors"){
-            console.log(`You Win! Computer chose ${computerSelection}. Rock beats Scissors.`); 
-            return 1;
-        } 
-        // (1 round game)If playerSelection is Rock and computerSelection is Paper, return "You lose! Paper beats Rock."
-        // (5 round game)IF player loses, alert and return 2
-        if (computerSelection === "paper"){
-            console.log(`You Lose! Computer chose ${computerSelection}. Paper beats Rock.`);
-            return 2;
+        break; 
+    // If playerSelection is Rock and computerSelection is Scissors, return "You win! Rock beats Scissors."
+      case (playerSelection === "rock" && computerSelection === "scissors"):
+        console.log ("You Win! Rock beats Scissors."); 
+        return 1;
+        break; 
+    // If playerSelection is Rock and computerSelection is Paper, return "You lose! Paper beats Rock."
+      case (playerSelection === "rock" && computerSelection === "paper"):
+        console.log("You Lose! Paper beats Rock.");
+        return 2;
+        break; 
+      // If playerSelection is Paper and computerSelection is Rock, return "You win! Paper beats Rock."
+      case (playerSelection === "paper" && computerSelection === "rock"):
+        console.log ("You Win! Paper beats Rock."); 
+        return 1;
+        break; 
+      // If playerSelection is Paper and computerSelection is Scissors, return "You lose! Scissors beats Paper."
+      case (playerSelection === "paper" && computerSelection === "scissors"):
+        console.log ("You Lose! Scissors beats Paper.");
+        return 2;
+        break;
+      //If playerSelection is Scissors and computerSelection is Paper, return "You win! Scissors beats Paper."
+      case (playerSelection === "scissors" && computerSelection === "paper"):
+        console.log ("You Win! Scissors beats Paper.");
+        return 1; 
+        break; 
+       //If playerSelection is Scissors and computerSelection is Rock, return "You lose! Rock beats Scissors."
+      case (playerSelection === "scissors" && computerSelection === "rock"):
+        console.log ("You Lose! Rock beats Scissors.");
+        return 2; 
+        break; 
+      default:
+        console.log("Invalid entry. Could not play.")
         }
     }
-    if (playerSelection === "paper"){
-        // (1 round game)If playerSelection is Paper and computerSelection is Rock, return "You win! Paper beats Rock."
-        // (5 round game)IF player wins, alert and return 1
-        if (computerSelection === "rock"){
-            console.log(`You Win! Computer chose ${computerSelection}. Rock beats Scissors.`); 
-            return 1; 
-        }
-        // (1 round game)If playerSelection is Paper and computerSelection is Scissors, return "You lose! Scissors beats Paper."
-        // (5 round game)IF player loses, alert and return 2
-        if (computerSelection === "scissors") {
-            console.log(`You Lose! Computer chose ${computerSelection}. Paper beats Rock.`);
-            return 2;
-        }
-    }
-    if (playerSelection === "scissors"){
-        // (1 round game)If playerSelection is Scissors and computerSelection is Paper, return "You win! Scissors beats Paper."
-        // (5 round game)IF player wins, alert and return 1
-        if (computerSelection === "paper"){
-            console.log(`You Win! Computer chose ${computerSelection}. Rock beats Scissors.`); 
-            return 1;
-
-        }
-        // (1 round game)If playerSelection is Scissors and computerSelection is Rock, return "You lose! Rock beats Scissors."
-        // (5 round game)IF player loses, alert and return 2
-        if (computerSelection === "rock"){
-            console.log(`You Lose! Computer chose ${computerSelection}. Paper beats Rock.`);
-            return 2;
-        }
-    } else {
-        return;
-    }
-}
 // Create a new function named game() that plays 5 rounds. 
 function game() {
     // Create variables that store the sum of winning count.
@@ -84,10 +69,9 @@ function game() {
         let sumOfTie = 0;
     // Loop playRound 5 times    
         for (let i = 0; i < 5; i++){
-           // Create a variable that store Player's entry. 
-        //    let promptPlayer = ;
-           // Call playRound function. 
-           let result = playRound(promptEntry(), getComputerChoice())
+            // Call playRound function. 
+           console.log(`Game ${i+1}`);
+           let result = playRound(promptEntry(), getComputerChoice());
            console.log(result);
             //IF the condition returns TRUE, add one count to the appropriate sum variable. 
             if (result === 0){
@@ -117,7 +101,7 @@ function game() {
     }
     
 // Helper function that repeat prompt to player until correct entry is made. 
-function promptEntry () {
+function promptEntry() {
     let entry;
   // Repeat prompt until conditions is FALSE 
     do {
