@@ -84,19 +84,19 @@ function game() {
         let sumOfTie = 0;
     // Loop playRound 5 times    
         for (let i = 0; i < 5; i++){
-           // Create a variable that store Player's entry in LOWER case. 
-           let promptPlayer = prompt("Rock, Paper, or Scissors?").toLowerCase(); 
+           // Create a variable that store Player's entry. 
+        //    let promptPlayer = ;
            // Call playRound function. 
-           let result = playRound(promptPlayer, getComputerChoice())
+           let result = playRound(promptEntry(), getComputerChoice())
            console.log(result);
             //IF the condition returns TRUE, add one count to the appropriate sum variable. 
             if (result === 0){
                 sumOfTie += 1; 
             }
-            if (result === 1){
+            else if (result === 1){
                 playerSumOfWin += 1; 
             }
-            if (result === 2){
+            else if (result === 2){
                 computerSumOfWin += 1;    
             } 
         }
@@ -116,9 +116,20 @@ function game() {
         return resultMessage;
     }
     
+// Helper function that repeat prompt to player until correct entry is made. 
+function promptEntry () {
+    let entry;
+  // Repeat prompt until conditions is FALSE 
+    do {
+      entry = prompt("Rock? Paper? or Scissors?");
+      console.log(`Entry: ${entry}`);   
+    } while (entry.toLowerCase() !== "rock" && entry.toLowerCase() !== "paper" && entry.toLowerCase() !== "scissors" || entry === null || entry === '');
+    return entry.toLowerCase(); 
+    }
+    
 
-game();
-
+    game();
+    
  
 // Test run for single round
 // const playerSelection = "rock";
