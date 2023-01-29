@@ -3,9 +3,64 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
-        <script src="javascript.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <script src="javascript.js" defer></script>
     </head>
     <body>
-        
+        <!-- Intro overlay that disappear with start button click -->
+        <div id="intro"> 
+            <h1>Rock, Paper, Scissors Game</h1>
+            <p>You play with the computer.</p>
+            <p>Either you or the computer who won 5 times first is the winner. </p>
+            <p>Press one of the buttons of your choice at the bottom on each round.</p>
+            <button type="button" id="start-btn">Let's play!</button>
+        </div>
+        <!-- Replay overlay that reload the Intro screen with yes button click -->
+        <div id="replay">
+            <div class="modal">
+                <p>Play again?</p>
+                <button type="button" id="replay-btn">Yes</button>
+            </div>
+        </div>
+        <!-- game screen -->
+        <!-- top container -->
+        <div id="header">
+            <div class="icon">
+                <p>You</p>
+                <div class="emoji-face" role="img" aria-label="smiley-face-with-sunglasses">&#128526;</div> 
+            </div>
+            <div class="score-board">
+                <div id="player" class="score-box">0</div>
+                <h2>Score</h2>
+                <div id="computer" class="score-box">0</div>
+            </div>
+            <div class="icon">
+                <p>Computer</p>
+                <div class="emoji-face" role="img" aria-label="robot">&#129302;</div>
+            </div>
+        </div>
+        <!-- middle container -->
+        <div class="result">
+            <div id="player-choice"></div>
+            <div class="winner-call"></div>
+            <div id="computer-choice"></div>
+        </div>
+       <!-- bottom container -->
+        <div class="buttons">
+            <div class="rock">
+                <div class="labels">Rock</div>
+                <button type="button" value="rock" class="button" id="rock" role="img" aria-label="rock-hand-gesture">&#9994</button>
+            </div>
+            <div class="paper">
+                <div class="labels">Paper</div>  
+                <button type="button" value="paper" class="button" id="paper" role="img" aria-label="paper-hand-gesture">&#9995</button>
+            </div>
+            <div class="scissors"> 
+                <div class="labels">Scissors</div>  
+                <button type="button" value="scissors" class="button" id="scissors" role="img" aria-label="scissors-hand-gesture">&#9996</button>
+            </div>  
+        </div>
+        <div class = "footer">Created by Keiko S. Jan. 2023 </div>
     </body>
 </html>
