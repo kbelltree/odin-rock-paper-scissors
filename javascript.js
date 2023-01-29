@@ -1,121 +1,142 @@
-// Create a function named getComputerChoice that randomly returns Rock, Paper, or Scissors. 
+// result section on DOM 
+const computerChoice = document.getElementById("computer-choice"); 
+const playerChoice = document.getElementById("player-choice"); 
+const winnerCall = document.querySelector(".winner-call");
+// score section on DOM 
+const computerScore = document.getElementById("computer");
+const playerScore = document.getElementById("player"); 
+// RPS buttons
+const buttons = document.querySelectorAll(".button");
+// start button 
+const startBtn = document.getElementById("start-btn"); 
+// replay overlay modal
+const replayPopUp = document.getElementById("replay");
+// replay button
+const replayBtn = document.getElementById("replay-btn");
+
+// score counter for player and computer
+let playerWinCount = 0;
+let computerWinCount = 0;
+// boolean setting to stop game when either score hits 5 (true)  
+let stopRound = false; 
+
+// a function randomly returns Rock, Paper, or Scissors as computer's choice
 function getComputerChoice() {
     // Use random number method that returns one of three options (if 0, return rock; if 1, return paper; if 2, return scissors). 
     let result = Math.floor(Math.random() * 3); 
+    // Conditional that returns result as well as display the computer's choice
     switch (result) {
-        // Include console.log to check if the desired result is returned. 
         case 0:   
-            console.log("Computer: rock");
+            computerChoice.textContent = "✊";
             return "rock";
-            break;
         case 1: 
-            console.log("Computer: paper");
+            computerChoice.textContent = "✋";
             return "paper";
-            break;
-        case 2: 
-            console.log("Computer: scissors");
-            return "scissors";
-            break;     
+        case 2:
+            computerChoice.textContent = "✌️";
+            return "scissors";    
     }
 } 
 
-// Create a function named playRound for single round play that takes two parameters: playerSelection and computerSelection. 
-function playRound(playerSelection, computerSelection){
-    // IF playerSelection and computerSelection are the same, return "It's a tie!"
-    switch (true) {
+// playRound rebuilt to play until the player of the computer hits 5 first
+function playRound(playerSelection, computerSelection) {
+    // DOM: Change ALL the console.log messages to show in the text node of winner-call
+    // Also increment score accordingly in the score board in each case
+    switch (true) { 
+      //If both are the same, show "Its'a tie!"
       case (playerSelection === computerSelection):
-        console.log("It's a tie!");
-        return 0; 
+        winnerCall.textContent = "It's a tie!";
         break; 
-    // If playerSelection is Rock and computerSelection is Scissors, return "You win! Rock beats Scissors."
+      //If playerSelection is Rock and computerSelection is Scissors, return "You win! Rock beats Scissors."
       case (playerSelection === "rock" && computerSelection === "scissors"):
-        console.log ("You Win! Rock beats Scissors."); 
-        return 1;
+        winnerCall.textContent = "You Win! Rock beats Scissors.";
+        playerWinCount++;
+        playerScore.innerText = playerWinCount; 
         break; 
-    // If playerSelection is Rock and computerSelection is Paper, return "You lose! Paper beats Rock."
+      //If playerSelection is Rock and computerSelection is Paper, return "You lose! Paper beats Rock."
       case (playerSelection === "rock" && computerSelection === "paper"):
-        console.log("You Lose! Paper beats Rock.");
-        return 2;
-        break; 
-      // If playerSelection is Paper and computerSelection is Rock, return "You win! Paper beats Rock."
-      case (playerSelection === "paper" && computerSelection === "rock"):
-        console.log ("You Win! Paper beats Rock."); 
-        return 1;
-        break; 
-      // If playerSelection is Paper and computerSelection is Scissors, return "You lose! Scissors beats Paper."
-      case (playerSelection === "paper" && computerSelection === "scissors"):
-        console.log ("You Lose! Scissors beats Paper.");
-        return 2;
+        winnerCall.textContent = "You Lose! Paper beats Rock.";
+        computerWinCount++;
+        computerScore.innerText = computerWinCount; 
         break;
+      //If playerSelection is Paper and computerSelection is Rock, return "You win! Paper beats Rock."
+      case (playerSelection === "paper" && computerSelection === "rock"):
+        winnerCall.textContent = "You Win! Paper beats Rock.";
+        playerWinCount++;
+        playerScore.innerText = playerWinCount; 
+        break;
+      //If playerSelection is Paper and computerSelection is Scissors, return "You lose! Scissors beats Paper."
+      case (playerSelection === "paper" && computerSelection === "scissors"):
+        winnerCall.textContent = "You Lose! Scissors beats Paper.";
+        computerWinCount++;
+        computerScore.innerText = computerWinCount; 
+        break; 
       //If playerSelection is Scissors and computerSelection is Paper, return "You win! Scissors beats Paper."
       case (playerSelection === "scissors" && computerSelection === "paper"):
-        console.log ("You Win! Scissors beats Paper.");
-        return 1; 
-        break; 
+        winnerCall.textContent = "You Win! Scissors beats Paper.";
+        playerWinCount++;
+        playerScore.innerText = playerWinCount; 
+        break;
        //If playerSelection is Scissors and computerSelection is Rock, return "You lose! Rock beats Scissors."
       case (playerSelection === "scissors" && computerSelection === "rock"):
-        console.log ("You Lose! Rock beats Scissors.");
-        return 2; 
-        break; 
-      default:
-        console.log("Invalid entry. Could not play.")
-        }
+        winnerCall.textContent = "You Lose! Rock beats Scissors.";
+        computerWinCount++;
+        computerScore.innerText = computerWinCount; 
+        break;
     }
-// Create a new function named game() that plays 5 rounds. 
-function game() {
-    // Create variables that store the sum of winning count.
-        let playerSumOfWin = 0;
-        let computerSumOfWin = 0;
-        let sumOfTie = 0;
-    // Loop playRound 5 times    
-        for (let i = 0; i < 5; i++){
-            // Call playRound function. 
-           console.log(`Game ${i+1}`);
-           let result = playRound(promptEntry(), getComputerChoice());
-           console.log(result);
-            //IF the condition returns TRUE, add one count to the appropriate sum variable. 
-            if (result === 0){
-                sumOfTie += 1; 
-            }
-            else if (result === 1){
-                playerSumOfWin += 1; 
-            }
-            else if (result === 2){
-                computerSumOfWin += 1;    
-            } 
-        }
-        let resultMessage = ``;
-    // IF the winning counts of player and computer are the same, return "It's a Tie!"
-    if (playerSumOfWin === computerSumOfWin){
-        resultMessage += `It's a Tie! You scored ${playerSumOfWin} and Computer scored ${computerSumOfWin}, Tied ${sumOfTie} times.`;
+    // Check if either one hit 5 before next round fires
+    if (playerWinCount === 5 || computerWinCount === 5) {
+      // Function call that display who won
+      displayWinnerMessage(playerWinCount, computerWinCount);
+      // if one has 5 change the boolean true to stop round
+      stopRound = true; 
+      // Set to display replay overlay after 3 seconds
+      setTimeout(askReplay, 3000);
     }
-    // IF the player's winning count is greater than the computer's, return "You Win!"
-    else if (playerSumOfWin > computerSumOfWin){
-        resultMessage += `You Win! You scored ${playerSumOfWin} and Computer scored ${computerSumOfWin}, Tied ${sumOfTie} times.`;
-    // Else return "You Lose!"
-    } else {
-        resultMessage += `You Lose! You scored ${playerSumOfWin} and Computer scored ${computerSumOfWin}, Tied ${sumOfTie} times.`;
-    }
-        console.log(resultMessage);
-        return resultMessage;
-    }
-    
-// Helper function that repeat prompt to player until correct entry is made. 
-function promptEntry() {
-    let entry;
-  // Repeat prompt until conditions is FALSE 
-    do {
-      entry = prompt("Rock? Paper? or Scissors?");
-      console.log(`Entry: ${entry}`);   
-    } while (entry.toLowerCase() !== "rock" && entry.toLowerCase() !== "paper" && entry.toLowerCase() !== "scissors" || entry === null || entry === '');
-    return entry.toLowerCase(); 
-    }
-    
+}
 
-    game();
-    
- 
-// Test run for single round
-// const playerSelection = "rock";
-// const computerSelection = getComputerChoice();
-// console.log(playRound(playerSelection, computerSelection));
+// Add playRound as eventListener on click to RPS buttons
+buttons.forEach(function(button) { 
+  // at the same time the event is fired, pass the button's value as playerSelection argument
+  button.addEventListener("click", function(e) { 
+    // Set to fire the event only when stopRound is FALSE
+    if (!stopRound) { 
+      // Display the player's choice
+      playerChoice.textContent = e.target.textContent;
+      // Call playRound function 
+      playRound(e.target.value, getComputerChoice());
+    }
+  });   
+})
+
+// Create a function that displays the winner
+function displayWinnerMessage(player, computer) {
+  winnerCall.classList.add('shout');
+  switch (true) {
+    case (player === 5):
+      winnerCall.textContent = "You win! 🙌";
+      break; 
+    case (computer === 5):
+      winnerCall.textContent = "Computer wins! 😞";
+      break;
+  } 
+}
+
+// Create a function that ask the player to replay
+function askReplay() {
+  replayPopUp.style.display = "block";
+  replayBtn.addEventListener("click", reset);
+}
+
+// Link start button to start function on click, set to fire only once 
+startBtn.addEventListener("click", start, {once : true}) 
+function start() {
+  document.getElementById("intro").style.display = "none";
+  winnerCall.textContent = "Rock Paper Scissors!"
+}
+
+// Create a function that reload to restart the game
+function reset() {
+  location.reload();
+}
+
