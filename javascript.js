@@ -86,8 +86,8 @@ function playRound(playerSelection, computerSelection) {
     }
     // Check if either one hit 5 before next round fires
     if (playerWinCount === 5 || computerWinCount === 5) {
-      // Function call that display who won
-      displayWinnerMessage(playerWinCount, computerWinCount);
+      // Function call that display who won after 1 second 
+      setTimeout(function() {displayWinnerMessage(playerWinCount, computerWinCount)}, 1000);
       // if one has 5 change the boolean true to stop round
       stopRound = true; 
       // Set to display replay overlay after 3 seconds
@@ -101,6 +101,8 @@ buttons.forEach(function(button) {
   button.addEventListener("click", function(e) { 
     // Set to fire the event only when stopRound is FALSE
     if (!stopRound) { 
+      // Signal a round sign after 1 second
+      setTimeout(promptRPS, 1000);
       // Display the player's choice
       playerChoice.textContent = e.target.textContent;
       // Call playRound function 
@@ -108,6 +110,13 @@ buttons.forEach(function(button) {
     }
   });   
 })
+
+// Create a function that clear the result and prompt rock paper scissors
+function promptRPS() {
+  playerChoice.textContent = "";
+  computerChoice.textContent = "";
+  winnerCall.textContent = "Rock paper scissors!"
+}
 
 // Create a function that displays the winner
 function displayWinnerMessage(player, computer) {
