@@ -75,6 +75,8 @@ I demonstrated the following skills while developing the game:<br>
   - ['Boxes That Fill Height (Or More) (and Don’t Squish)' by CSS-Tricks](https://css-tricks.com/boxes-fill-height-dont-squish/)
   - ['aspect-ratio' by MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio)
   - ['how can i extend a footer to bottom of page?' on stackoverflow](https://stackoverflow.com/questions/9741701/how-can-i-extend-a-footer-to-bottom-of-page)
+  - ['emojis are causing change in line height' on stackoverflow](https://stackoverflow.com/questions/70037803/emojis-are-causing-change-in-line-height)
+  - ['line-height' by MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height)
 
   - ['Using Emojis in HTML' by W3Schools](https://www.w3schools.com/html/html_emojis.asp)
   - ['Emojis and accessibility: How to use them properly' by Ryan Tan](https://uxdesign.cc/emojis-in-accessibility-how-to-use-them-properly-66b73986b803)
