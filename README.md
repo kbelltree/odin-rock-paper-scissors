@@ -8,6 +8,9 @@ In this project, I created the game 'Rock Paper Scissors' to practice writing a 
 The first phase is to enable the game to be played from the browser console, as described [here](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors). <br>
 The second phase involves adding UI to play from the website browser, as described [here](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors).
 <br>
+The live preview of the completed work can be found [here](https://kbelltree.github.io/odin-rock-paper-scissors/).
+<br>
+<br>
 I demonstrated the following skills while developing the game:<br>
 
   #### Problem Solving ####
