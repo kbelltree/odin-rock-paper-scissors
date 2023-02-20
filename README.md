@@ -51,7 +51,11 @@ I demonstrated the following skills while developing the game:<br>
    * Delete the branch 
 
 <br>
-   
+
+***
+
+<br>
+
 **Tools Used**
   - UI Designing Tool by [Figma.com](https://www.figma.com)
   - Emoji HTML code lookup by [EMOJIGUIDE.ORG](https://emojiguide.org/)
