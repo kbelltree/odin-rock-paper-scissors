@@ -1,5 +1,10 @@
 # odin-rock-paper-scissors
 ## Project: Rock Paper Scissors / The Odin Project 
+
+<br>
+<div align="center">
+  <img src="assets/rock-paper-scissors-project-keiko-s-2022.png" alt="rock-paper-scissors-project-by-keiko-s-2022" width=50% height=50%>
+</div>
 <br>
 
 ## Summary ##
